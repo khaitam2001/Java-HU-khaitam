@@ -1,7 +1,7 @@
 package Opdracht1;
 
 public class Persoon {
-    private String naam;
+    protected String naam;
     private double budget;
 
     public Persoon(String Naam) {
