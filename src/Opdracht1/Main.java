@@ -15,13 +15,13 @@ public class Main {
 
         System.out.println(k1);
         System.out.println(v1 + "\n");
+        v1.addGames(g1);
+        System.out.println(v1 + "\n");
 
         Transactie t1 = new Transactie(k1, v1, g1);
-        System.out.println(t1.getVerkochteGame());
-        System.out.println(t1);
-        System.out.println(k1);
-        System.out.println(v1);
-
-
+        System.out.println(t1 + "\n");
+        t1.voerTransactieUit();
+        Transactie t2 = new Transactie(k1, v1, g3);
+        t2.voerTransactieUit();
     }
 }

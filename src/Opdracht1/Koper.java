@@ -23,6 +23,6 @@ public class Koper extends Persoon implements Budget{
     }
 
     public String toString(){
-        return this.getNaam() + " is een koper met een budget van " + this.getBudget() + "\nen heeft de games: " + this.getGames();
+        return this.getNaam() + " is een koper met een budget van €" + this.getBudget() + "\nen heeft de games: " + this.getGames();
     }
 }

@@ -23,4 +23,8 @@ public class Game {
 
         return this.getNaam() == newGame.getNaam();
     }
+
+    public String toString() {
+        return naam + " met een prijs van €" + Prijs;
+    }
 }

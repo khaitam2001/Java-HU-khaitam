@@ -9,10 +9,21 @@ public class Transactie {
         this.Koper = koper;
         this.Verkoper = verkoper;
         this.Verkochte_Game = Verkochte_game;
+    }
 
-        Koper.changeBudget(Verkochte_game.getPrijs());
-        Koper.addGame(Verkochte_game);
-        Verkoper.changeBudget(Verkochte_game.getPrijs());
+    public void voerTransactieUit(){
+        if (Koper.budget < Verkochte_Game.getPrijs()){
+            System.out.println(Koper.getNaam() + " heeft niet genoeg geld");
+        }
+        else if (Verkoper.getGames().contains(Verkochte_Game) == false) {
+            System.out.println(Verkoper.getNaam() + " heeft geen '" + Verkochte_Game.getNaam() + "'");
+        }
+        else {
+             Koper.addGame(Verkochte_Game);
+             Koper.changeBudget(Verkochte_Game.getPrijs());
+             Verkoper.changeBudget(Verkochte_Game.getPrijs());
+             System.out.println(Koper.getNaam() + " heeft '" + Verkochte_Game.getNaam() + "' gekocht van " + Verkoper.getNaam());
+        }
     }
 
     public Game getVerkochteGame() {
@@ -28,6 +39,6 @@ public class Transactie {
     }
 
     public String toString() {
-        return this.getKoper().getNaam() + " heeft '" + this.getVerkochteGame().getNaam() + "' gekocht van " + this.getVerkoper().getNaam();
+        return this.getKoper().getNaam() + " wilt '" + this.getVerkochteGame().getNaam() + "' kopen van " + this.getVerkoper().getNaam();
     }
 }
