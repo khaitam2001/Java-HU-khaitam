@@ -18,6 +18,9 @@ public class Transactie {
         else if (Verkoper.getGames().contains(Verkochte_Game) == false) {
             System.out.println(Verkoper.getNaam() + " heeft geen '" + Verkochte_Game.getNaam() + "'");
         }
+        else if (Koper.getGames().contains(Verkochte_Game) == true) {
+            System.out.println(Koper.getNaam() + " heeft de game '" + Verkochte_Game.getNaam() + "' al gekocht.");
+        }
         else {
              Koper.addGame(Verkochte_Game);
              Koper.changeBudget(Verkochte_Game.getPrijs());

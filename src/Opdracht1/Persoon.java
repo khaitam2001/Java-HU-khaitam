@@ -20,6 +20,10 @@ public class Persoon {
         budget = newBudget;
     }
 
+    public void addToBudget(double Budget) {
+        budget += Budget;
+    }
+
     public String toString() {
         return naam + " heeft een budget van " + budget;
     }
