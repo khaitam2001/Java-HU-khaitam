@@ -2,7 +2,7 @@ package Opdracht1;
 
 public class Persoon {
     protected String naam;
-    private double budget;
+    protected double budget;
 
     public Persoon(String Naam) {
         naam = Naam;
