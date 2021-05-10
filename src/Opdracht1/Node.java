@@ -29,4 +29,9 @@ public class Node {
         // Setter methode voor node B
         NodeB = nodeB;
     }
+
+    @Override
+    public String toString() {
+        return naam;
+    }
 }

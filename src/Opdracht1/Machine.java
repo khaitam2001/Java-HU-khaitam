@@ -15,11 +15,11 @@ public class Machine {
         Nodes.add(BeginNode);
         Node currentNode = BeginNode;
         for (int i = 0; i < Letters.length(); i += 1) {
-            if (Letters.substring(i,i+1) == "A") {
+            if (Letters.substring(i, i + 1).equals("A")) {
                 currentNode = currentNode.getNodeA();
                 Nodes.add(currentNode);
             }
-            else if (Letters.substring(i,i+1) == "B") {
+            else if (Letters.substring(i, i + 1).equals("B")) {
                 currentNode = currentNode.getNodeB();
                 Nodes.add(currentNode);
             }
