@@ -15,11 +15,20 @@ public class Node {
     }
 
     public void addNodePath(String letter, Node newNode) {
-        nodePaths.put(letter, newNode);
+        if (this.getNodePaths().containsKey(letter)) {
+            System.out.println("Letter bestaat al");
+        }
+
+        else if (this.getNodePaths().containsValue(newNode))
+            System.out.println("Node bestaat al");
+
+        else {
+            nodePaths.put(letter, newNode);
+        }
     }
 
     @Override
     public String toString() {
-        return naam + "\n " + this.getNodePaths();
+        return naam;
     }
 }
