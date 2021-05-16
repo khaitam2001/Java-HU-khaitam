@@ -1,37 +1,25 @@
 package Opdracht1;
+import java.util.*;
 
 public class Node {
     private String naam;
-    private Node NodeA;
-    private Node NodeB;
+    private HashMap<String, Node> nodePaths = new HashMap<String, Node>();
 
     public Node(String naam) {
         // Constructor waar naam wordt ingevoerd
         this.naam = naam;
     }
 
-    public Node getNodeA() {
-        // Getter methode voor node A
-        return NodeA;
+    public HashMap<String, Node> getNodePaths() {
+        return nodePaths;
     }
 
-    public void setNodeA(Node nodeA) {
-        // Setter methode voor node A
-        NodeA = nodeA;
-    }
-
-    public Node getNodeB() {
-        // Getter methode voor node B
-        return NodeB;
-    }
-
-    public void setNodeB(Node nodeB) {
-        // Setter methode voor node B
-        NodeB = nodeB;
+    public void addNodePath(String letter, Node newNode) {
+        nodePaths.put(letter, newNode);
     }
 
     @Override
     public String toString() {
-        return naam;
+        return naam + "\n " + this.getNodePaths();
     }
 }

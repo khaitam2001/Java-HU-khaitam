@@ -7,19 +7,11 @@ public class Main {
         Node s2 = new Node("s2");
         Node s3 = new Node("s3");
 
-        s0.setNodeA(s2);
-        s0.setNodeB(s1);
 
-        s1.setNodeA(s1);
-        s1.setNodeB(s2);
+        s0.addNodePath("a", s1);
+        s0.addNodePath("b", s2);
+        System.out.println(s0.getNodePaths().get("a"));
+        System.out.println(s0.getNodePaths().get("b"));
 
-        s2.setNodeA(s2);
-        s2.setNodeB(s3);
-
-        s3.setNodeA(s3);
-        s3.setNodeB(s0);
-
-        Machine f = new Machine("BAAB", s0);
-        System.out.println(f.toList());
     }
 }
