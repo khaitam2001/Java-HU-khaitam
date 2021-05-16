@@ -1,4 +1,5 @@
 package Opdracht1;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,11 +8,20 @@ public class Main {
         Node s2 = new Node("s2");
         Node s3 = new Node("s3");
 
+        s0.addNodePath("A", s2);
+        s0.addNodePath("B", s1);
+        s1.addNodePath("A", s1);
+        s1.addNodePath("B", s2);
+        s2.addNodePath("B", s3);
+        s3.addNodePath("A", s3);
+        s3.addNodePath("B", s0);
+        System.out.println(s0.getNode("A"));
+        System.out.println(s0.getNode("B"));
 
-        s0.addNodePath("a", s1);
-        s0.addNodePath("b", s2);
-        System.out.println(s0.getNodePaths().get("a"));
-        System.out.println(s0.getNodePaths().get("b"));
+        Machine m1 = new Machine("BAAB", s0);
+        System.out.println(m1.getLetters());
+        m1.FollowPath();
+        System.out.println(m1.getPath());
 
     }
 }

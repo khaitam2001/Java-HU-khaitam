@@ -6,7 +6,6 @@ public class Node {
     private HashMap<String, Node> nodePaths = new HashMap<String, Node>();
 
     public Node(String naam) {
-        // Constructor waar naam wordt ingevoerd
         this.naam = naam;
     }
 
@@ -14,7 +13,13 @@ public class Node {
         return nodePaths;
     }
 
+    public Node getNode(String letter) {
+        return this.getNodePaths().get(letter);
+    }
+
     public void addNodePath(String letter, Node newNode) {
+        // Als de HashMap nodePaths een van de letters als key heeft of een van de Nodes als value heeft, dan geeft hij
+        // een error
         if (this.getNodePaths().containsKey(letter)) {
             System.out.println("Letter bestaat al");
         }
