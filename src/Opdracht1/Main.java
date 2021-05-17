@@ -19,7 +19,7 @@ public class Main {
         System.out.println(s0.getNode("B"));
 
         Machine m1 = new Machine("BAAB", s0);
-        System.out.println(m1.getLetters());
+        System.out.println(m1.getLetters()); 
         m1.FollowPath();
         System.out.println(m1.getPath());
 

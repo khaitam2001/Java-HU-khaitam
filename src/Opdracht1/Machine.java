@@ -1,5 +1,4 @@
 package Opdracht1;
-import java.sql.Array;
 import java.util.*;
 
 public class Machine {
@@ -10,18 +9,26 @@ public class Machine {
     public Machine(String Letters, Node BeginNode) {
         letters = Letters;
         beginNode = BeginNode;
-        path.add(beginNode);
     }
 
     public void FollowPath() {
         // Loop door alle letters
         Node currentNode = beginNode;
+        path.add(beginNode);
         for (int i = 0; i < this.getLetters().length(); i++){
             String letter = String.valueOf(this.getLetters().charAt(i));
 
             // Voeg elke keer een nieuwe Node toe aan de ArrayList path
-            path.add(currentNode.getNode(letter));
-            currentNode = currentNode.getNode(letter);
+            if (currentNode.getNode(letter) == null) {
+                // Als de node niet bestaat, stop dan de loop.
+                System.out.println("Node bestaat niet bij de letter: " + letter);
+                break;
+            }
+            else {
+                path.add(currentNode.getNode(letter));
+                currentNode = currentNode.getNode(letter);
+            }
+
 
         }
     }
