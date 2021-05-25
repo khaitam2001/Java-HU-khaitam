@@ -5,7 +5,7 @@ import java.util.*;
 public class Node {
     private String naam;
     private LinkedList<Node> korstePad = new LinkedList<>();
-    private int afstand = Integer.MAX_VALUE;
+    private double afstand = Integer.MAX_VALUE;
     private HashMap<Node, Double> verbondenLocaties = new HashMap<Node, Double>();
 
     public Node(String naam) {
@@ -32,11 +32,11 @@ public class Node {
         this.korstePad = korstePad;
     }
 
-    public int getAfstand() {
+    public double getAfstand() {
         return afstand;
     }
 
-    public void setAfstand(int afstand) {
+    public void setAfstand(double afstand) {
         this.afstand = afstand;
     }
 
@@ -46,5 +46,9 @@ public class Node {
 
     public void setVerbondenLocaties(HashMap<Node, Double> verbondenLocaties) {
         this.verbondenLocaties = verbondenLocaties;
+    }
+
+    public String toString() {
+        return naam;
     }
 }
