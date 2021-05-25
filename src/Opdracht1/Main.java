@@ -1,27 +1,25 @@
 package Opdracht1;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Node s0 = new Node("s0");
-        Node s1 = new Node("s1");
-        Node s2 = new Node("s2");
-        Node s3 = new Node("s3");
+        Node a = new Node("a");
+        Node b = new Node("b");
+        Node c = new Node("c");
+        Node d = new Node("d");
+        Node e = new Node("e");
+        Node f = new Node("f");
 
-        s0.addNodePath("A", s2);
-        s0.addNodePath("B", s1);
-        s1.addNodePath("A", s1);
-        s1.addNodePath("B", s2);
-        s2.addNodePath("B", s3);
-        s3.addNodePath("A", s3);
-        s3.addNodePath("B", s0);
-        System.out.println(s0.getNode("A"));
-        System.out.println(s0.getNode("B"));
+        a.addVerbondenLocaties(b, 10);
+        a.addVerbondenLocaties(c, 15);
+        b.addVerbondenLocaties(d, 12);
+        b.addVerbondenLocaties(f, 15);
+        c.addVerbondenLocaties(e, 10);
+        d.addVerbondenLocaties(e, 2);
+        d.addVerbondenLocaties(f, 1);
+        f.addVerbondenLocaties(e, 5);
 
-        Machine m1 = new Machine("BAAB", s0);
-        System.out.println(m1.getLetters()); 
-        m1.followPath();
-        System.out.println(m1.getPath());
+        Reis reis = new Reis(a, f);
+        reis.compareTo();
 
     }
 }

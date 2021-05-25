@@ -1,7 +1,6 @@
 package Opdracht1;
 import java.util.*;
 import org.junit.jupiter.api.Test;
-
 import java.sql.Array;
 
 import static org.junit.jupiter.api.Assertions.*;
