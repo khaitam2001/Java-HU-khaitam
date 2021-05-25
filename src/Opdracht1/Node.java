@@ -1,39 +1,50 @@
 package Opdracht1;
+
 import java.util.*;
 
 public class Node {
     private String naam;
-    private HashMap<String, Node> nodePaths = new HashMap<String, Node>();
+    private LinkedList<Node> korstePad = new LinkedList<>();
+    private int afstand = Integer.MAX_VALUE;
+    private HashMap<Node, Double> verbondenLocaties = new HashMap<Node, Double>();
 
     public Node(String naam) {
         this.naam = naam;
     }
 
-    public HashMap<String, Node> getNodePaths() {
-        return nodePaths;
+    public void addLocatie(Node locatie, double afstand) {
+        verbondenLocaties.put(locatie, afstand);
     }
 
-    public Node getNode(String letter) {
-        return this.getNodePaths().get(letter);
-    }
-
-    public void addNodePath(String letter, Node newNode) {
-        // Als de HashMap nodePaths een van de letters als key heeft of een van de Nodes als value heeft, dan geeft hij
-        // een error
-        if (this.getNodePaths().containsKey(letter)) {
-            System.out.println("Letter bestaat al");
-        }
-
-        else if (this.getNodePaths().containsValue(newNode))
-            System.out.println("Node bestaat al");
-
-        else {
-            nodePaths.put(letter, newNode);
-        }
-    }
-
-    @Override
-    public String toString() {
+    public String getNaam() {
         return naam;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public LinkedList<Node> getKorstePad() {
+        return korstePad;
+    }
+
+    public void setKorstePad(LinkedList<Node> korstePad) {
+        this.korstePad = korstePad;
+    }
+
+    public int getAfstand() {
+        return afstand;
+    }
+
+    public void setAfstand(int afstand) {
+        this.afstand = afstand;
+    }
+
+    public HashMap<Node, Double> getVerbondenLocaties() {
+        return verbondenLocaties;
+    }
+
+    public void setVerbondenLocaties(HashMap<Node, Double> verbondenLocaties) {
+        this.verbondenLocaties = verbondenLocaties;
     }
 }
