@@ -49,15 +49,25 @@ public class Main {
         reis1.addNode(f);
         reis1.addNode(g);
 
+        // Kijk hier de paden van de verschillende reizen
         reis1.calculateBestPath();
         System.out.println("Reis1 pad: " + reis1.getPad());
         System.out.println("Reis2 pad: " + reis2.getPad());
+
+        // Kijk de afstand van de verschillende paden
+        System.out.println("Reis1 afstand: " + reis1.calculateDistance());
+        System.out.println("Reis2 afstand: " + reis2.calculateDistance());
 
         reis1.compareTo(reis2);
 
         // We kijken wat er gebeurt als er een pad wordt gebruikt, dat niet kan bestaan.
         List<Node> onmogelijkePad = new ArrayList<>(Arrays.asList(a, b, c, d, e, f, g));
         reis2.setPad(onmogelijkePad);
+        System.out.println(reis1.compareTo(reis2));
+
+        // We kijken wat er gebeurt als een van de datatypes anders is, dan handelt de functie dit netjes.
+        g.addNeighbour(new Treinrit(g, d, 8));
+        reis2.setPad(mogelijkePad);
         System.out.println(reis1.compareTo(reis2));
     }
 }
