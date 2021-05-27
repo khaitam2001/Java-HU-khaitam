@@ -11,45 +11,42 @@ public class Main {
         Node f = new Node("f");
         Node g = new Node("g");
 
-        a.addLocatie(b, 3);
-        a.addLocatie(c, 6);
-        b.addLocatie(a, 3);
-        b.addLocatie(c, 2);
-        b.addLocatie(e, 9);
-        b.addLocatie(d, 7);
-        c.addLocatie(a, 6);
-        c.addLocatie(b, 2);
-        c.addLocatie(e, 2);
-        c.addLocatie(f, 6);
-        d.addLocatie(b, 7);
-        d.addLocatie(e, 3);
-        d.addLocatie(f, 5);
-        d.addLocatie(g, 8);
-        e.addLocatie(b, 9);
-        e.addLocatie(c, 2);
-        e.addLocatie(f, 4);
-        e.addLocatie(d, 3);
-        f.addLocatie(c,6);
-        f.addLocatie(e,4);
-        f.addLocatie(d,5);
-        f.addLocatie(g, 4);
-        g.addLocatie(f, 4);
-        g.addLocatie(d, 8);
+        a.addNeighbour(new Rit(a, b, 3));
+        a.addNeighbour(new Rit(a, c, 6));
+        b.addNeighbour(new Rit(b, a, 3));
+        b.addNeighbour(new Rit(b, c, 2));
+        b.addNeighbour(new Rit(b, e, 9));
+        b.addNeighbour(new Rit(b, d, 7));
+        c.addNeighbour(new Rit(c, a, 6));
+        c.addNeighbour(new Rit(c, b, 2));
+        c.addNeighbour(new Rit(c, e, 2));
+        c.addNeighbour(new Rit(c, f, 6));
+        d.addNeighbour(new Rit(d, b, 7));
+        d.addNeighbour(new Rit(d, d, 3));
+        d.addNeighbour(new Rit(d, f, 5));
+        d.addNeighbour(new Rit(d, g, 8));
+        e.addNeighbour(new Rit(e, b, 9));
+        e.addNeighbour(new Rit(e, c, 2));
+        e.addNeighbour(new Rit(e, f, 4));
+        e.addNeighbour(new Rit(e, d, 3));
+        f.addNeighbour(new Rit(f, c, 6));
+        f.addNeighbour(new Rit(f, e, 4));
+        f.addNeighbour(new Rit(f, d, 5));
+        f.addNeighbour(new Rit(f, g, 4));
+        g.addNeighbour(new Rit(g, f, 4));
+        g.addNeighbour(new Rit(g, d, 8));
 
-        Rit rit1 = new Rit(a, g);
-        rit1.addNode(a);
-        rit1.addNode(b);
-        rit1.addNode(c);
-        rit1.addNode(d);
-        rit1.addNode(e);
-        rit1.addNode(f);
-        rit1.addNode(g);
+        Reis reis1 = new Reis(a, g);
 
-        rit1.calculateBestPath();
-        System.out.println(rit1);
+        reis1.addNode(a);
+        reis1.addNode(b);
+        reis1.addNode(c);
+        reis1.addNode(d);
+        reis1.addNode(e);
+        reis1.addNode(f);
+        reis1.addNode(g);
 
-        List<Node> listnodes = Arrays.asList(a, b, c, d, e, f, g);
-        System.out.println((rit1.compareTo(listnodes)));
+        reis1.calculateBestPath();
 
     }
 }

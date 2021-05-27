@@ -17,6 +17,10 @@ public class Reis implements Comparable {
         this.pad = newPad;
     }
 
+    public void setPad(List<Node> newPad) {
+        this.pad = newPad;
+    }
+
     public List<Node> getPad() {
         return pad;
     }
@@ -37,81 +41,42 @@ public class Reis implements Comparable {
         this.eindNode = eindNode;
     }
 
-
-
     public void calculateBestPath() {
         Node currentNode = beginNode;
-        Stap [] stappen = new Stap [nodes.size()];
         List<Node> visitedNodes = new ArrayList<Node>();
+        currentNode.setAfstand(0);
 
-        // Maak 6 stappen voor alle nodes
-        for (int i = 0; i < nodes.size(); i++) {
-            stappen[i] = new Stap(nodes.get(i));
-            stappen[i].setKorsteAfstand(Integer.MAX_VALUE);
-            stappen[i].setVorigeNode(beginNode);
-        }
-
-        // De afstand van de eerste node is 0
-        beginNode.setAfstand(0);
-        stappen[0].setKorsteAfstand(0);
-        stappen[0].setVorigeNode(beginNode);
+        System.out.println(currentNode.getNeighbours().get(0) instanceof Rit);
 
         while (visitedNodes.size() != nodes.size()) {
             // Blijf dit doen, tot we alle nodes hebben bezocht.
-            for ( Map.Entry<Node, Double> entry : currentNode.getVerbondenLocaties().entrySet() ) {
+
+            for (Stap stap:currentNode.getNeighbours()) {
                 // Loop door alle connecties met de huidige node
-                Node key = entry.getKey();
-                Double value = entry.getValue();
+                Node key = stap.getEindNode();
+                Double value = stap.getWeight();
 
-                // Loop door alle stappen
-                for (Stap stap : stappen) {
-
-                    // Zoek de correcte stap, waarvoor we een connectie hebben
-                    if (stap.getEindNode() == key) {
-
-                        // Als stap.eindNode() groter is dan value + currentNode.afStand, verander hem.
-                        if (stap.getEindNode().getAfstand() > value + currentNode.getAfstand()) {
-
-                            stap.setVorigeNode(currentNode);
-                            stap.setKorsteAfstand(value + stap.getVorigeNode().getAfstand());
-                            stap.getEindNode().setAfstand(value + stap.getVorigeNode().getAfstand());
-
-                        }
-                    }
+                if (key.getAfstand() > value + currentNode.getAfstand()) {
+                    key.setAfstand(value + currentNode.getAfstand());
                 }
             }
+
             // Zoek de volgende node waarvan we gaan bepalen wat het kortste pad is.
             visitedNodes.add(currentNode);
             double smallest = Integer.MAX_VALUE;
 
             // Loop door alle stappen
-            for (Stap stap : stappen) {
+            for (Stap stap : currentNode.getNeighbours()) {
                 // Als de stap.korsteAfstand kleiner is dan smallest EN de stap.EindNode is niet de beginNode EN de node
                 // is nog niet in "visitedNodes", zet dan de Node als de volgende node die we gaan bezoeken.
                 // Dit zullen we blijven doen totdat visitedNodes alle Nodes heeft bezocht.
-                if ((stap.getKorsteAfstand() < smallest) && (stap.getEindNode() != beginNode) && (visitedNodes.contains(stap.getEindNode()) == false)) {
-                    smallest = stap.getKorsteAfstand();
-                    Node shortestNode = stap.getEindNode();
-                    currentNode = shortestNode;
+                if ((stap.getEindNode().getAfstand() < smallest) && (stap.getEindNode() != beginNode) && (!visitedNodes.contains(stap.getEindNode()))) {
+                    smallest = stap.getEindNode().getAfstand();
+                    currentNode = stap.getEindNode();
                 }
             }
         }
-        List<Node> pad = new ArrayList<Node>();
-        Node searchNode = eindNode;
-        boolean finished = false;
-
-        while (finished == false) {
-            for (Stap stap : stappen) {
-                if (stap.getEindNode() == searchNode) {
-                    pad.add(0, stap.getEindNode());
-                    searchNode = stap.getVorigeNode();
-                }
-                if (pad.contains(beginNode)) {
-                    finished = true;
-                }
-            }
-        }
-        this.pad = pad;
+        System.out.println(eindNode.getAfstand());
     }
 
     public String toString(){

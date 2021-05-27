@@ -1,18 +1,23 @@
 package Opdracht1;
 
+import java.sql.Array;
 import java.util.*;
 
 public class Node {
     private String naam;
     private double afstand = Integer.MAX_VALUE;
-    private HashMap<Node, Double> verbondenLocaties = new HashMap<Node, Double>();
+    private List<Stap> neighbours = new ArrayList<Stap>();
 
     public Node(String naam) {
         this.naam = naam;
     }
 
-    public void addLocatie(Node locatie, double afstand) {
-        verbondenLocaties.put(locatie, afstand);
+    public void addNeighbour(Stap stap) {
+        neighbours.add(stap);
+    }
+
+    public List<Stap> getNeighbours() {
+        return neighbours;
     }
 
     public String getNaam() {
@@ -29,14 +34,6 @@ public class Node {
 
     public void setAfstand(double afstand) {
         this.afstand = afstand;
-    }
-
-    public HashMap<Node, Double> getVerbondenLocaties() {
-        return verbondenLocaties;
-    }
-
-    public void setVerbondenLocaties(HashMap<Node, Double> verbondenLocaties) {
-        this.verbondenLocaties = verbondenLocaties;
     }
 
     public String toString() {

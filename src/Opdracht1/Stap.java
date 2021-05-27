@@ -1,29 +1,26 @@
 package Opdracht1;
 
 public class Stap {
-    private Node vorigeNode;
+    private Node beginNode;
     private Node eindNode;
-    private double korsteAfstand;
-    private boolean sptSet;
+    private double weight;
 
-    public Stap(Node eindNode) {
+    public Stap(Node beginNode, Node eindNode, double weight) {
+        this.beginNode = beginNode;
         this.eindNode = eindNode;
+        this.weight = weight;
     }
 
-    public boolean isSptSet() {
-        return sptSet;
+    public Node getBeginNode() {
+        return beginNode;
     }
 
-    public void setSptSet(boolean sptSet) {
-        this.sptSet = sptSet;
+    public void setBeginNode(Node beginNode) {
+        this.beginNode = beginNode;
     }
 
-    public Node getVorigeNode() {
-        return vorigeNode;
-    }
-
-    public void setVorigeNode(Node beginNode) {
-        this.vorigeNode = beginNode;
+    public double getWeight() {
+        return weight;
     }
 
     public Node getEindNode() {
@@ -34,15 +31,7 @@ public class Stap {
         this.eindNode = eindNode;
     }
 
-    public double getKorsteAfstand() {
-        return korsteAfstand;
-    }
-
-    public void setKorsteAfstand(double korsteAfstand) {
-        this.korsteAfstand = korsteAfstand;
-    }
-
     public String toString() {
-        return "Vorige: " + vorigeNode + " Eind: " + eindNode + " Afstand: " + korsteAfstand;
+        return "Begin: " + beginNode + " Eind: " + eindNode;
     }
 }
