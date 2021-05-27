@@ -8,4 +8,8 @@ public class Rit extends Stap {
     public Rit(Node beginNode, Node eindNode, double weight) {
         super(beginNode, eindNode, weight);
     }
+
+    public String getStapType() {
+        return stapType;
+    }
 }
