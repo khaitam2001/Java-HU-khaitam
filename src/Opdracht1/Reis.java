@@ -59,12 +59,8 @@ public class Reis implements Comparable {
                     // Zoek de correcte stap, waarvoor we een connectie hebben
                     if (stap.getEindNode() == key) {
 
-                        // Als die stap groter is dan value + de afstand van de vorige node, verander hem.
+                        // Als stap.eindNode() groter is dan value + stap.vorigeNode(), verander hem.
                         if (stap.getEindNode().getAfstand() > value + stap.getVorigeNode().getAfstand()) {
-                            System.out.println(stap.getEindNode());
-                            System.out.println(stap.getEindNode().getAfstand());
-                            System.out.println();
-
                             stap.setVorigeNode(currentNode);
                             stap.setKorsteAfstand(value + stap.getVorigeNode().getAfstand());
                             stap.getEindNode().setAfstand(value + stap.getVorigeNode().getAfstand());
@@ -73,10 +69,16 @@ public class Reis implements Comparable {
                     }
                 }
             }
+            // Zoek de volgende node waarvan we gaan bepalen wat het kortste pad is.
             visitedNodes.add(currentNode);
             double smallest = Integer.MAX_VALUE;
+
+            // Loop door alle stappen
             for (Stap stap : stappen) {
                 System.out.println(stap);
+                // Als de stap.korsteAfstand kleiner is dan smallest EN de stap.EindNode is niet de beginNode EN de node
+                // is nog niet in "visitedNodes", zet dan de Node als de volgende node die we gaan bezoeken.
+                // Dit zullen we blijven doen totdat visitedNodes alle Nodes heeft bezocht.
                 if ((stap.getKorsteAfstand() < smallest) && (stap.getEindNode() != beginNode) && (visitedNodes.contains(stap.getEindNode()) == false)) {
                     smallest = stap.getKorsteAfstand();
                     Node shortestNode = stap.getEindNode();
@@ -84,7 +86,6 @@ public class Reis implements Comparable {
                 }
             }
             System.out.println("\n");
-//            System.out.println("Key: " + key + " Value: " + value);
         }
     }
 
