@@ -38,8 +38,8 @@ public class Main {
 
         Reis reis1 = new Reis("Reis1",a, g);
         Reis reis2 = new Reis("Reis2",a, g);
-        List<Node> stappen = new ArrayList<>(Arrays.asList(a, b, c, e, d, f, g));
-        reis2.setPad(stappen);
+        List<Node> mogelijkePad = new ArrayList<>(Arrays.asList(a, b, c, e, d, f, g));
+        reis2.setPad(mogelijkePad);
 
         reis1.addNode(a);
         reis1.addNode(b);
@@ -50,9 +50,14 @@ public class Main {
         reis1.addNode(g);
 
         reis1.calculateBestPath();
+        System.out.println("Reis1 pad: " + reis1.getPad());
+        System.out.println("Reis2 pad: " + reis2.getPad());
 
+        reis1.compareTo(reis2);
+
+        // We kijken wat er gebeurt als er een pad wordt gebruikt, dat niet kan bestaan.
+        List<Node> onmogelijkePad = new ArrayList<>(Arrays.asList(a, b, c, d, e, f, g));
+        reis2.setPad(onmogelijkePad);
         System.out.println(reis1.compareTo(reis2));
-        System.out.println(reis2.compareTo(reis1));
-
     }
 }

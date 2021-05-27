@@ -149,8 +149,17 @@ public class Reis implements Comparable {
         // Returnt een string waarin staat welke reis beter is.
 
         // Check of het pad kan bestaan.
-        if (this.padKanBestaan() == false) {
-            throw new RuntimeException("Het pad: " + this.pad + " kan niet bestaan");
+        if (this.padKanBestaan() == false || reis.padKanBestaan() == false) {
+            return ("Een of meerdere van de paden kan/kunnen niet bestaan");
+        }
+
+        // Check of de datatypes allemaal hetzelfde zijn als de eerste datatype
+        for (Node node:pad) {
+            for (Stap neighbour:node.getNeighbours()) {
+                if (neighbour.getClass() != node.getNeighbours().get(0).getClass()) {
+                    return ("Datatypes zijn niet allemaal hetzelfde");
+                }
+            }
         }
         // Return de reis dat beter is.
         double total1 = this.calculateDistance();
