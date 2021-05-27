@@ -1,4 +1,5 @@
 package Opdracht1;
+import java.sql.Array;
 import java.util.*;
 // SOURCES = https://www.baeldung.com/java-dijkstra en https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 
@@ -44,20 +45,21 @@ public class Reis implements Comparable {
     public void calculateBestPath() {
         Node currentNode = beginNode;
         List<Node> visitedNodes = new ArrayList<Node>();
+        // Zet de afstand van de eerste node op 0
         currentNode.setAfstand(0);
-
-        System.out.println(currentNode.getNeighbours().get(0) instanceof Rit);
 
         while (visitedNodes.size() != nodes.size()) {
             // Blijf dit doen, tot we alle nodes hebben bezocht.
 
             for (Stap stap:currentNode.getNeighbours()) {
-                // Loop door alle connecties met de huidige node
+                // Loop door alle neighbours van de huidige node.
                 Node key = stap.getEindNode();
                 Double value = stap.getWeight();
 
+                // Als de afstand van de node groter is dan de huidige node + weight, verander hem.
                 if (key.getAfstand() > value + currentNode.getAfstand()) {
                     key.setAfstand(value + currentNode.getAfstand());
+                    key.setBestVorigeNode(currentNode);
                 }
             }
 
@@ -65,18 +67,24 @@ public class Reis implements Comparable {
             visitedNodes.add(currentNode);
             double smallest = Integer.MAX_VALUE;
 
-            // Loop door alle stappen
             for (Stap stap : currentNode.getNeighbours()) {
-                // Als de stap.korsteAfstand kleiner is dan smallest EN de stap.EindNode is niet de beginNode EN de node
-                // is nog niet in "visitedNodes", zet dan de Node als de volgende node die we gaan bezoeken.
-                // Dit zullen we blijven doen totdat visitedNodes alle Nodes heeft bezocht.
+                // If statement met: 1. de afstand van de eindnode van de stap is kleiner dan smallest
+                // 2. De node is niet de beginNode
+                // 3. De eindNode zit niet in visitedNodes
+                // Als dat allemaal waar is, dan wordt die node de volgende node die we gaan bezoeken.
                 if ((stap.getEindNode().getAfstand() < smallest) && (stap.getEindNode() != beginNode) && (!visitedNodes.contains(stap.getEindNode()))) {
                     smallest = stap.getEindNode().getAfstand();
                     currentNode = stap.getEindNode();
                 }
             }
         }
-        System.out.println(eindNode.getAfstand());
+        List<Node> path = new ArrayList<Node>(Arrays.asList(eindNode));
+        currentNode = eindNode;
+        while (!path.contains(beginNode)) {
+            path.add(0, currentNode.getBestVorigeNode());
+            currentNode = currentNode.getBestVorigeNode();
+        }
+        this.setPad(path);
     }
 
     public String toString(){
@@ -84,25 +92,16 @@ public class Reis implements Comparable {
     }
 
     @Override
-    public String compareTo(List<Node> pad) {
-        // Return het pad dat beter is.
-        double totaldistance1 = 0;
-        double totaldistance2 = 0;
-        this.pad = this.getPad();
-        for (Node node:this.getPad()) {
-            totaldistance1 += node.getAfstand();
-        }
-        for (Node node:pad) {
-            totaldistance2 += node.getAfstand();
-        }
-        if (totaldistance1 < totaldistance2) {
-            return "Het pad: " + this.getPad() + " is beter dan het pad " + pad;
-        }
-        else if (totaldistance2 > totaldistance1) {
-            return "Het pad: " + pad + " is beter dan het pad " + this.getPad();
-        }
-        else {
-            return "Het pad: " + this.getPad() + " is even goed als het pad " + pad;
+    public String compareTo(Reis reis) {
+        // Return de reis dat beter is.
+        double total1 = 0;
+        double total2 = 0;
+        System.out.println(beginNode.getNeighbours().get(0) instanceof Rit);
+        return "test";
+
+        // Check wat voor type de stap is.
+        if (beginNode.getNeighbours().get(0) instanceof Rit) {
+
         }
     }
 }

@@ -6,6 +6,7 @@ import java.util.*;
 public class Node {
     private String naam;
     private double afstand = Integer.MAX_VALUE;
+    private Node bestVorigeNode;
     private List<Stap> neighbours = new ArrayList<Stap>();
 
     public Node(String naam) {
@@ -14,6 +15,14 @@ public class Node {
 
     public void addNeighbour(Stap stap) {
         neighbours.add(stap);
+    }
+
+    public Node getBestVorigeNode() {
+        return bestVorigeNode;
+    }
+
+    public void setBestVorigeNode(Node bestVorigeNode) {
+        this.bestVorigeNode = bestVorigeNode;
     }
 
     public List<Stap> getNeighbours() {
