@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Node {
     private String naam;
-    private LinkedList<Node> korstePad = new LinkedList<>();
     private double afstand = Integer.MAX_VALUE;
     private HashMap<Node, Double> verbondenLocaties = new HashMap<Node, Double>();
 
@@ -22,14 +21,6 @@ public class Node {
 
     public void setNaam(String naam) {
         this.naam = naam;
-    }
-
-    public LinkedList<Node> getKorstePad() {
-        return korstePad;
-    }
-
-    public void setKorstePad(LinkedList<Node> korstePad) {
-        this.korstePad = korstePad;
     }
 
     public double getAfstand() {

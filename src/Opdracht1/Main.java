@@ -1,4 +1,5 @@
 package Opdracht1;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -35,17 +36,20 @@ public class Main {
         g.addLocatie(f, 4);
         g.addLocatie(d, 8);
 
-        Reis reis = new Reis(a, f);
-        reis.addNode(a);
-        reis.addNode(b);
-        reis.addNode(c);
-        reis.addNode(d);
-        reis.addNode(e);
-        reis.addNode(f);
-        reis.addNode(g);
+        Rit rit1 = new Rit(a, g);
+        rit1.addNode(a);
+        rit1.addNode(b);
+        rit1.addNode(c);
+        rit1.addNode(d);
+        rit1.addNode(e);
+        rit1.addNode(f);
+        rit1.addNode(g);
 
-        System.out.println(reis);
-        reis.compareTo();
+        rit1.calculateBestPath();
+        System.out.println(rit1);
+
+        List<Node> listnodes = Arrays.asList(a, b, c, d, e, f, g);
+        System.out.println((rit1.compareTo(listnodes)));
 
     }
 }

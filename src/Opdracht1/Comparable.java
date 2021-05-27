@@ -1,5 +1,6 @@
 package Opdracht1;
+import java.util.*;
 
 public interface Comparable {
-    public void compareTo();
+    public String compareTo(List<Node> pad);
 }
