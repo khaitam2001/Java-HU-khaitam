@@ -36,9 +36,9 @@ public class Main {
         g.addNeighbour(new Rit(g, f, 4));
         g.addNeighbour(new Rit(g, d, 8));
 
-        Reis reis1 = new Reis(a, g);
-        Reis reis2 = new Reis(a, g);
-        List<Node> stappen = new ArrayList<>(Arrays.asList(a, b, c, d, e, f, g));
+        Reis reis1 = new Reis("Reis1",a, g);
+        Reis reis2 = new Reis("Reis2",a, g);
+        List<Node> stappen = new ArrayList<>(Arrays.asList(a, b, c, e, d, f, g));
         reis2.setPad(stappen);
 
         reis1.addNode(a);
@@ -50,8 +50,8 @@ public class Main {
         reis1.addNode(g);
 
         reis1.calculateBestPath();
-        reis1.compareTo(reis2);
-        System.out.println(reis1.calculateDistance());
+
+        System.out.println(reis1.compareTo(reis2));
         System.out.println(reis2.compareTo(reis1));
 
     }

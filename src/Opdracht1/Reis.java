@@ -10,7 +10,8 @@ public class Reis implements Comparable {
     private List<Node> nodes = new ArrayList<Node>();
     private List<Node> pad = new ArrayList<Node>();
 
-    public Reis(Node beginNode, Node eindNode) {
+    public Reis(String naam, Node beginNode, Node eindNode) {
+        this.naam = naam;
         this.beginNode = beginNode;
         this.eindNode = eindNode;
     }
@@ -144,28 +145,50 @@ public class Reis implements Comparable {
     }
     @Override
     public String compareTo(Reis reis) {
+        // Vergelijkt twee reizen met elkaar. We kijken naar het pad van beide reizen en bekijken welke groter is.
+        // Returnt een string waarin staat welke reis beter is.
 
         // Check of het pad kan bestaan.
         if (this.padKanBestaan() == false) {
             throw new RuntimeException("Het pad: " + this.pad + " kan niet bestaan");
         }
         // Return de reis dat beter is.
-        double total1 = this.getEindNode().getAfstand();
-        double total2 = reis.getEindNode().getAfstand();
+        double total1 = this.calculateDistance();
+        double total2 = reis.calculateDistance();
 
         if (total1 > total2) {
+
             // Check wat voor type Stap het is.
             if (beginNode.getNeighbours().get(0) instanceof Rit myRit) {
                 // Check welke groter is dan de ander.
-                return this.getNaam() + " is " + (total2 - total1) + myRit.getStapType();
+                return reis.getNaam() + " is " + (total1 - total2) + myRit.getStapType() + " korter dan " + this.getNaam();
+            }
+
+            else if (beginNode.getNeighbours().get(0) instanceof Vlucht myVlucht) {
+                return reis.getNaam() + " is " + (total1 - total2) + myVlucht.getStapType() + " korter dan " + this.getNaam();
+            }
+
+            else if (beginNode.getNeighbours().get(0) instanceof Treinrit myTreinrit) {
+                return reis.getNaam() + " is " + (total1 - total2) + myTreinrit.getStapType() + " korter dan " + this.getNaam();
             }
         }
 
         // Dit is hetzelfde als hierboven, maar nu kijken we of total2 groter is dan total1
         else if (total2 > total1) {
             if (beginNode.getNeighbours().get(0) instanceof Rit myRit) {
-                return this.getNaam() + " is " + (total2 - total1) + myRit.getStapType();
+                return this.getNaam() + " is " + (total2 - total1) + myRit.getStapType() + " korter dan " + reis.getNaam();
             }
+
+            else if (beginNode.getNeighbours().get(0) instanceof Vlucht myVlucht) {
+                return this.getNaam() + " is " + (total2 - total1) + myVlucht.getStapType() + " korter dan " + reis.getNaam();
+            }
+
+            else if (beginNode.getNeighbours().get(0) instanceof Treinrit myTreinrit) {
+                return this.getNaam() + " is " + (total2 - total1) + myTreinrit.getStapType() + " korter dan " + reis.getNaam();
+            }
+        }
+        else{
+            return "Het is even groot";
         }
         return "Test";
     }
